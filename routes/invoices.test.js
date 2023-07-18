@@ -1,0 +1,1 @@
+// same concepts as companies get the pattern, skipping to save time, 

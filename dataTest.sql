@@ -1,30 +1,17 @@
-DROP DATABASE IF EXISTS biztime;
+DROP DATABASE IF EXISTS biztime_test;
 
-CREATE DATABASE biztime;
+CREATE DATABASE biztime_test;
 
-\c biztime
+\c biztime_test
 
 DROP TABLE IF EXISTS invoices;
 DROP TABLE IF EXISTS companies;
 
-CREATE TABLE industries (
-  id PRIMARY KEY,
-  industry_code text,
-  industry_field text NOT NULL,
-  
-);
-
-
 CREATE TABLE companies (
     code text PRIMARY KEY,
-    industry text REFERENCES industries(industry_code), 
     name text NOT NULL UNIQUE,
     description text
-);   
-
--- ^ think I get the flow, the rest is too tedious and time consuming don't want to
--- mess up and have to refactor other code while time is sensitive. 
-
+);
 
 CREATE TABLE invoices (
     id serial PRIMARY KEY,
@@ -35,10 +22,6 @@ CREATE TABLE invoices (
     paid_date date,
     CONSTRAINT invoices_amt_check CHECK ((amt > (0)::double precision))
 );
-
-
-
-
 
 INSERT INTO companies
   VALUES ('apple', 'Apple Computer', 'Maker of OSX.'),
